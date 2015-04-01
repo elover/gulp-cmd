@@ -3,4 +3,5 @@ node_modules
 .swap
 .orig
 .log
+.idea
 test/gulpfile.js

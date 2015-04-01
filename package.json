@@ -1,23 +1,23 @@
 {
-  "name": "gulp-seajs-combo",
-  "version": "1.2.0",
-  "description": "seajs(CMD) Module combo pulgin for gulp",
-  "homepage": "http://github.com/chenmnkken/gulp-seajs-combo",
+  "name": "gulp-cmd",
+  "version": "0.4.0",
+  "description": "seajs(CMD) Module transform and concat pulgin for gulp",
+  "homepage": "https://github.com/elover/gulp-cmd",
   "author": {
-    "name": "YiguoChan",
-    "email": "chenmnkken@gmail.com",
-    "url": "http://stylechen.com/"
+    "name": "nanwei",
+    "email": "qianduan51@qq.com",
+    "url": ""
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/chenmnkken/gulp-seajs-combo.git"
+    "url": "git@github.com:elover/gulp-cmd.git"
   },
   "main": "index.js",
   "keywords": [
     "gulpplugin",
     "seajs",
     "cmd",
-    "combo"
+    "transform"
   ],
   "scripts": {
     "test": "mocha"

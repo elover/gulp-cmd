@@ -5,14 +5,14 @@ var fs = require( 'fs' ),
     assert = require( 'stream-assert' ),
     handlebars = require( 'gulp-handlebars' ),
     wrap = require( 'gulp-wrap' ),
-    seajsCombo = require( '../index' );
+    cmd = require( '../index' );
 
 describe( 'gulp-seajs-combo', function(){
-    describe( 'seajsCombo()', function(){
+    describe( 'cmd()', function(){
         // 测试忽略空文件
         it( 'should ignore null file', function( done ){
             gulp.src( 'hello.js' )
-                .pipe( seajsCombo() )
+                .pipe( cmd() )
                 .pipe( assert.length(0) )
                 .pipe( assert.end(done) );
         });
@@ -25,7 +25,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/a.js' )
-                    .pipe( seajsCombo() )
+                    .pipe( cmd() )
                     .pipe( assert.first(function( srcData ){
                         srcData.contents.should.eql( buildData );
                     }))
@@ -41,7 +41,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/r.js' )
-                    .pipe( seajsCombo() )
+                    .pipe( cmd() )
                     .pipe( assert.first(function( srcData ){
                         srcData.contents.should.eql( buildData );
                     }))
@@ -57,7 +57,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/f.js' )
-                    .pipe( seajsCombo({
+                    .pipe( cmd({
                         map : {
                             'src/g' : './g',
                             'src/h' : './h'
@@ -80,7 +80,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/c.js' )
-                    .pipe( seajsCombo({
+                    .pipe( cmd({
                         ignore : ['./e']
                     }))
                     .pipe( assert.first(function( srcData ){
@@ -98,7 +98,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
             gulp.src( 'src/f2.js' )
-                .pipe( seajsCombo({
+                .pipe( cmd({
                     map : {
                         'src/g' : './g',
                         'src/h' : './h'
@@ -119,7 +119,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/q.js' )
-                    .pipe( seajsCombo({
+                    .pipe( cmd({
                         plugins : [{
                             ext : [ '.tpl' ],
                             use : [{
@@ -147,7 +147,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/m.js' )
-                    .pipe( seajsCombo() )
+                    .pipe( cmd() )
                     .pipe( assert.first(function( srcData ){
                         srcData.contents.should.eql( buildData );
                     }))
@@ -163,7 +163,7 @@ describe( 'gulp-seajs-combo', function(){
                 }
 
                 gulp.src( 'src/k.js' )
-                    .pipe( seajsCombo({
+                    .pipe( cmd({
                         map : {
                             'src/l' : './l'
                         }

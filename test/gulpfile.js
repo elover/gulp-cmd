@@ -1,17 +1,17 @@
 var gulp = require( 'gulp' ),
-    seajsCombo = require( '../index' ),
+    cmd = require( '../index' ),
     handlebars = require( 'gulp-handlebars' ),
     wrap = require( 'gulp-wrap' );
 
 gulp.task( 'a', function(){
     return gulp.src( 'src/a.js' )
-        .pipe( seajsCombo() )
+        .pipe( cmd({ignore:['e']}) )
         .pipe( gulp.dest('build') );
 });
 
 gulp.task( 'c', function(){
     return gulp.src( 'src/c.js' )
-        .pipe( seajsCombo({
+        .pipe( cmd({
             ignore : [ 'e' ]
         }))
         .pipe( gulp.dest('build') );
@@ -19,7 +19,7 @@ gulp.task( 'c', function(){
 
 gulp.task( 'f', function(){
     return gulp.src( 'src/f.js' )
-        .pipe( seajsCombo({
+        .pipe( cmd({
             map : {
                 'src/g' : './g',
                 'src/h' : './h'
@@ -30,7 +30,7 @@ gulp.task( 'f', function(){
 
 gulp.task( 'f2', function(){
     return gulp.src( 'src/f2.js' )
-        .pipe( seajsCombo({
+        .pipe( cmd({
             map : {
                 'src/g' : './g',
                 'src/h' : './h'
@@ -41,7 +41,7 @@ gulp.task( 'f2', function(){
 
 gulp.task( 'k', function(){
     return gulp.src( 'src/k.js' )
-        .pipe( seajsCombo({
+        .pipe( cmd({
             map : {
                 'src/l' : './l'
             }
@@ -51,17 +51,17 @@ gulp.task( 'k', function(){
 
 gulp.task( 'm', function(){
     return gulp.src( 'src/m.js' )
-        .pipe( seajsCombo() )
+        .pipe( cmd() )
         .pipe( gulp.dest('build') );
 });
 
 gulp.task( 'q', function(){
     return gulp.src( 'src/q.js' )
-        .pipe( seajsCombo({
+        .pipe( cmd({
             plugins : [{
                 ext : [ '.tpl' ],
                 use : [{
-                        plugin : handlebars,
+                        plugin : handlebars
                     },{
                         plugin : wrap,
                         param : ['define(function(){return Handlebars.template(<%= contents %>)});']
@@ -73,7 +73,7 @@ gulp.task( 'q', function(){
 
 gulp.task( 'r', function(){
     return gulp.src( 'src/r.js' )
-        .pipe( seajsCombo() )
+        .pipe( cmd({ignore:[]}) )
         .pipe( gulp.dest('build') );
 });
 

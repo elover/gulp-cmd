@@ -1,30 +1,32 @@
-# gulp-seajs-combo
+# gulp-cmd
 
 ***
-> seajs(CMD) Module combo pulgin for gulp
+> seajs(CMD) Module transform and concat pulgin for gulp
 
 ## Install
 
 ```
-$ npm install --save-dev gulp-seajs-combo
+$ npm install --save-dev gulp-cmd
 ```
+
+注：最好的模式是每个文件名都是不同的，因为所有模块都是基于文件名来分配id，对于其他不同文件夹下的同名文件，为了避免冲突，命名方式会被更换成是{文件名}_gulp-cmd_{uid}，对于不同文件夹下的同名文件名，需要注意一点的是ignore中需要用精确匹配
 
 ## Usage
 
 ```
 var gulp = require( 'gulp' ),
-    seajsCombo = require( 'gulp-seajs-combo' );
+    cmd = require( 'gulp-cmd' );
     
-gulp.task( 'seajscombo', function(){
+gulp.task( 'cmd', function(){
     return gulp.src( 'src/js/main.js' )
-        .pipe( seajsCombo() )
+        .pipe( cmd() )
         .pipe( gulp.task('build/js') );
 }); 
 ```
 
 ## API
 
-### seajsCombo( options )
+### cmd( options )
 
 Unsupported files are ignored.
 
@@ -40,11 +42,19 @@ Default : `utf-8`
 
 Type : `Array`
 
-Ignored module list. e.g. combo module `main`, want ignore dependencies `global` and `common`, configuration ignore list : 
+Ignored module list. e.g. combo module `main`, want ignore dependencies `global` and `common`, configuration ignore list :
 
 ```
 ignore : [ 'global', 'common' ]
 ```
+
+模糊匹配：不带路径信息
+
+ignore : ['a'] 会匹配 src/a src/b/a
+
+精确匹配：带路径信息为带/
+
+ignore : ['src/a'] 会匹配 src/a 但不会匹配 src/b/a
 
 The ignore configuration must is name of the module. 
 
@@ -78,7 +88,7 @@ plugins : [{
 }]
 ```
 
-## Combo rule
+## concat rule
 
 Module `a.js` :
 
@@ -101,7 +111,7 @@ gulp code :
 
 ```
 gulp.src( 'src/a.js' )
-    .pipe( seajsCombo() )
+    .pipe( cmd() )
     ...
 ```
 
@@ -127,7 +137,7 @@ Gulp code :
 
 ```
 gulp.src( 'src/main.js' )
-    .pipe( seajsCombo() )
+    .pipe( cmd() )
     ...
 ```
 
@@ -146,8 +156,10 @@ seajs.use( 'a' );
 
 ## Parse `seajs.config`
 
-`gulp-seajs-combo` will parse `alias` `vars` `paths` in `seajs.config`, other configuration is ignored, the configuration value must be a `String`, will ignored variable. see more [seajs.config](https://github.com/seajs/seajs/issues/262). [test/src/m.js](https://github.com/chenmnkken/gulp-seajs-combo/blob/master/test/src/m.js) and [test/build/m.js](https://github.com/chenmnkken/gulp-seajs-combo/blob/master/test/build/m.js) is parse example.
+只有在有seajs.use的时候才有用
+
+`gulp-cmd` will parse `alias` `vars` `paths` in `seajs.config`, other configuration is ignored, the configuration value must be a `String`, will ignored variable. see more [seajs.config](https://github.com/seajs/seajs/issues/262). [test/src/m.js](https://github.com/elover/gulp-cmd/blob/master/test/src/m.js) and [test/build/m.js](https://github.com/elover/gulp-cmd/blob/master/test/build/m.js) is parse example.
 
 ## License
 
-MIT @ [Yiguo Chan](https://github.com/chenmnkken)
+MIT @ [nan wei](https://github.com/elover)
