@@ -316,7 +316,7 @@ var filterIgnore = function (ignore, id, origId) {
                 }
                 // 处理普通的js模块
                 else {
-                    if (!extName) {
+                    if (!extName && filePath.slice(-3) !== '.js') {
                         filePath += '.js'
                     }
 
