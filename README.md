@@ -24,7 +24,7 @@ gulp.task( 'cmd', function(){
         .pipe( gulp.task('build/js') );
 }); 
 ```
-想要直接使用例子，请到https://github.com/elover/gulp-cmd下载后
+想要直接使用例子，请先下载 https://github.com/elover/gulp-cmd
 
 运行 npm install
 到 example目录下，
