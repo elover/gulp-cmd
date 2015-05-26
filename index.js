@@ -471,6 +471,11 @@ var filterIgnore = function (ignore, id, origId) {
                 return result;
             });
 
+            // 为未包裹的模块提供define包裹
+            if(! rDefine.test(contents)){
+                contents = "define(function (require, exports, module) {" + contents + "});";
+            }
+
             // 为匿名模块添加模块名，同时将依赖列表添加到头部
             contents = contents.replace(rDefine, function () {
                 var id = idMap[origId];

@@ -5,7 +5,7 @@
 seajs.config({
     base: 'http://localhost:9999/',
     alias: {
-        define_demo: 'js/src/define_demo'
+        "define_demo": 'js/src/define_demo'
     }
 });
 //入口文件
