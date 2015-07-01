@@ -108,7 +108,7 @@ var filterIgnore = function (ignore, id, origId) {
  * return{ Object } 提取出来的配置
  */
     evalConfig = function (configStr) {
-        var configArr = [] ,
+        var configArr = [],
             config = {};
 
         configStr = configStr.replace(/\{/, '');
@@ -280,11 +280,11 @@ var filterIgnore = function (ignore, id, origId) {
                 // 检测该模块是否在忽略列表中
                 if (isIgnore) {
                     options.modArr.push({
-                        id : id,
-                        path : filePath,
-                        contents : '', // 把内容置为空，这样合并的时候就相当于不会合并进去了
-                        extName : extName,
-                        origId : origId
+                        id: id,
+                        path: filePath,
+                        contents: '', // 把内容置为空，这样合并的时候就相当于不会合并进去了
+                        extName: extName,
+                        origId: origId
                     });
                     resolve();
                     return;
@@ -292,14 +292,12 @@ var filterIgnore = function (ignore, id, origId) {
 
                 // 处理特殊的模块，如 tpl 模块（需额外的插件支持）
                 // 根据模块后缀来匹配是否使用插件
-                if (extName && !~extName.indexOf('.js')) {
-                    if (options.plugins && options.plugins[extName]) {
-                        plugins = options.plugins[extName];
+                if (extName && !~extName.indexOf('.js') && options.plugins && options.plugins[extName]) {
+                    plugins = options.plugins[extName];
 
-                        if (!plugins) {
-                            reject("Can't combo unkonwn module [" + filePath + "]");
-                            return;
-                        }
+                    if (!plugins) {
+                        reject("Can't combo unkonwn module [" + filePath + "]");
+                        return;
                     }
 
                     // 有插件则执行插件
@@ -316,7 +314,7 @@ var filterIgnore = function (ignore, id, origId) {
                 }
                 // 处理普通的js模块
                 else {
-                    if (!extName && filePath.slice(-3) !== '.js') {
+                    if (filePath.slice(-3) !== '.js') {
                         filePath += '.js'
                     }
 
@@ -361,7 +359,7 @@ var filterIgnore = function (ignore, id, origId) {
  */
     pullDeps = function (options, reg, contents) {
         var deps = [],
-            matches, origId,depPathResult;
+            matches, origId, depPathResult;
 
         reg.lastIndex = 0;
 
@@ -472,7 +470,7 @@ var filterIgnore = function (ignore, id, origId) {
             });
 
             // 为未包裹的模块提供define包裹
-            if(! rDefine.test(contents)){
+            if (!rDefine.test(contents)) {
                 contents = "define(function (require, exports, module) {" + contents + "});";
             }
 
@@ -545,12 +543,12 @@ var filterIgnore = function (ignore, id, origId) {
 
         newModArr.forEach(function (item) {
             var newContents = transform(options, item, idMap);
-            if( newContents ){
+            if (newContents) {
                 contents = newContents + '\n' + contents;
             }
 
             if (options.verbose) {
-                gutil.log('gulp-cmd:', '✔ Module [' +  item.path + '] combo success.');
+                gutil.log('gulp-cmd:', '✔ Module [' + item.path + '] combo success.');
             }
         });
 
