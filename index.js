@@ -271,7 +271,7 @@ var filterIgnore = function (ignore, id, origId) {
                     extName = item.extName,
                     filePath = item.path,
                     origId = item.origId,
-                    contents, stream, plugins, deps, isIgnore;
+                    contents, stream, plugins = [], deps, isIgnore;
 
                 isIgnore = options.ignore ?
                     filterIgnore(options.ignore, id, origId) :

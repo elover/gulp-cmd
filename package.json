@@ -1,6 +1,6 @@
 {
   "name": "gulp-cmd",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "seajs(CMD) Module transform and concat pulgin for gulp",
   "homepage": "https://github.com/elover/gulp-cmd",
   "author": {
